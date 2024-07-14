@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈페이지 - 세 번째 페이지</title>
+    <style>
+        .container { max-width: 800px; margin: auto; text-align: center; }
+        .nav-buttons { margin-top: 20px; }
+        .vote-section { text-align: left; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>세 번째 페이지 - 글 작성 및 투표</h1>
+        <textarea id="postContent" placeholder="여기에 글을 작성하세요..." rows="5" style="width: 100%;"></textarea>
+        <button onclick="postVote()">투표 게시</button>
+        <div class="vote-section" id="voteSection"></div>
+        <div class="nav-buttons">
+            <a href="index.html"><button>첫 번째 페이지</button></a>
+            <a href="page2.html"><button>두 번째 페이지</button></a>
+        </div>
+    </div>
+
+    <script>
+        function postVote() {
+            const voteSection = document.getElementById('voteSection');
+            const postContent = document.getElementById('postContent').value;
+
+            if (postContent.trim()) {
+                const vote = document.createElement('div');
+                vote.innerHTML = `<p>${postContent}</p>
+                                  <button onclick="voteYes(this)">동의</button>
+                                  <button onclick="voteNo(this)">비동의</button>`;
+                voteSection.appendChild(vote);
+                document.getElementById('postContent').value = '';
+            }
+        }
+
+        function voteYes(button) {
+            button.innerText = '동의 (1)';
+            button.disabled = true;
+            button.nextElementSibling.disabled = true;
+        }
+
+        function voteNo(button) {
+            button.innerText = '비동의 (1)';
+            button.disabled = true;
+            button.previousElementSibling.disabled = true;
+        }
+    </script>
+</body>
+</html>
